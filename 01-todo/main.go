@@ -3,11 +3,20 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 )
+
+type task struct {
+	name string
+	time time.Time
+}
 
 func main() {
 
-	todos := []string{"first task", "second task", "third task"}
+	todos := []task{
+		task{name: "Buy milk", time: time.Now()},
+		task{name: "Buy bread", time: time.Now()},
+	}
 
 	// If no params are passed, list the todos
 	if len(os.Args) == 1 {
@@ -22,8 +31,8 @@ func main() {
 
 }
 
-func listTodos(todos []string) {
+func listTodos(todos []task) {
 	for i, todo := range todos {
-		fmt.Println(i+1, todo)
+		fmt.Printf("%d. %s\n", i+1, todo.name)
 	}
 }
